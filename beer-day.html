@@ -8,30 +8,30 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-
-        <div class="form-control-wrapper">
-          <input type="text" class="form-control empty" name="username">
-          <div class="floating-label">A ti si?</div>
-        </div>
-        <div class="form-control-wrapper">
-          <input type="text" class="form-control empty" name="food">
-          <div class="floating-label">A šta ćeš pojist?</div>
-        </div>
-        <div class="form-control-wrapper">
-          <input type="text" class="form-control empty" name="drink">
-          <div class="floating-label">A šta ćeš popit?</div>
-        </div>
-
-        {{> requests}}
+        {{> request}}
       </div>
       <div class="col-lg-6">
-
+        
       </div>
 
     </div>
   </div>
 </body>
 
-<template name="requests">
-  <p>The current user is {{ userUid }}</p>
+<template name="request">
+  <form class="requestForm" >
+    <div class="form-control-wrapper">
+      <input type="text" class="form-control empty" name="username">
+      <div class="floating-label">A ti si?</div>
+      <div class="hint">Enter da potvrdiš nigga</div>
+    </div>
+    <div class="form-control-wrapper">
+      <input type="text" class="form-control empty" name="food">
+      <div class="floating-label">A šta ćeš pojist?</div>
+    </div>
+    <div class="form-control-wrapper">
+      <input type="text" class="form-control empty" name="drink">
+      <div class="floating-label">A šta ćeš popit?</div>
+    </div>
+  </form>
 </template>
