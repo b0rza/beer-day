@@ -1,14 +1,37 @@
 <head>
-  <title>beer-day</title>
+  <title>Beer Day (and assorted assortments)</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  {{ >navbar }}
 
-  {{> hello}}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="form-control-wrapper">
+          <input type="text" class="form-control empty" name="username">
+          <div class="floating-label">A ti si?</div>
+        </div>
+        <div class="form-control-wrapper">
+          <input type="text" class="form-control empty" name="food">
+          <div class="floating-label">A šta ćeš pojist?</div>
+        </div>
+        <div class="form-control-wrapper">
+          <input type="text" class="form-control empty" name="drink">
+          <div class="floating-label">A šta ćeš popit?</div>
+        </div>
+
+        {{> requests}}
+      </div>
+      <div class="col-lg-6">
+
+      </div>
+
+    </div>
+  </div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="requests">
+  <p>The current user is {{ userUid }}</p>
 </template>
