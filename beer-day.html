@@ -17,12 +17,14 @@
       <div class="col-lg-3">
         <div class="panel panel-primary order-panel">
           <div class="panel-heading">
-            <h3 class="panel-title">Jist</h3>
+            <h3 class="panel-title">Jist ({{ foods.count }})</h3>
           </div>
           <div class="panel-body">
             <ul>
-              {{ #each orders }}
-                <li>{{>foodOrder}}</li>
+              {{ #each foods }}
+                <li>
+                  <span class="username-emphasis">{{ username }}</span> | {{ food }}
+                </li>
               {{ /each }}
             </ul>
           </div>
@@ -33,18 +35,33 @@
       <div class="col-lg-3">
         <div class="panel panel-danger order-panel">
           <div class="panel-heading">
-            <h3 class="panel-title">Pit</h3>
+            <h3 class="panel-title">Pit ({{ drinks.count }})</h3>
           </div>
           <div class="panel-body">
             <ul>
-              {{ #each orders }}
-                <li>{{>drinkOrder}}</li>
+              {{ #each drinks }}
+                <li>
+                  <span class="username-emphasis">{{ username }}</span> | {{ drink }}
+                </li>
               {{ /each }}
             </ul>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <!-- Control -->
+    <div class="row">
+      <div class="col-lg-12">
+        <ul>
+          {{ #each all }}
+            <li>
+              <span class="username-emphasis">{{ username }}</span> | {{ drink }}
+            </li>
+          {{ /each }}
+        </ul>
+      </div>
     </div>
   </div>
 </body>
@@ -59,10 +76,13 @@
     <div class="form-control-wrapper">
       <input type="text" class="form-control empty" name="food">
       <div class="floating-label">A šta ćeš pojist?</div>
+      <div class="hint">Enter da potvrdiš nigga</div>
+
     </div>
     <div class="form-control-wrapper">
       <input type="text" class="form-control empty" name="drink">
       <div class="floating-label">A šta ćeš popit?</div>
+      <div class="hint">Enter da potvrdiš nigga</div>
     </div>
   </form>
 </template>
