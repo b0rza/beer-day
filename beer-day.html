@@ -8,10 +8,41 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
+
+        <!-- Request -->
         {{> request}}
       </div>
-      <div class="col-lg-6">
-        
+
+      <!-- Food -->
+      <div class="col-lg-3">
+        <div class="panel panel-primary order-panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Jist</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              {{ #each orders }}
+                <li>{{>foodOrder}}</li>
+              {{ /each }}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drinks -->
+      <div class="col-lg-3">
+        <div class="panel panel-danger order-panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Pit</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              {{ #each orders }}
+                <li>{{>drinkOrder}}</li>
+              {{ /each }}
+            </ul>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -34,4 +65,12 @@
       <div class="floating-label">A šta ćeš popit?</div>
     </div>
   </form>
+</template>
+
+<template name="foodOrder">
+  <span class="username-emphasis">{{ username }}</span> | {{ food }}
+</template>
+
+<template name="drinkOrder">
+  <span class="username-emphasis">{{ username }}</span> | {{ drink }}
 </template>

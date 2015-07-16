@@ -8,7 +8,7 @@ Template.request.helpers({
 
 Template.body.helpers({
   orders: function(){
-    return Orders.find();
+    return Orders.find({ date: new Date().toDateString() });
   }
 });
 
