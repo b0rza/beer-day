@@ -9,21 +9,20 @@ Template.request.helpers({
 Template.body.helpers({
   foods: function(){
     return Orders.find({
-      date: new Date().toDateString(),
+      createdAt: { $gt: Meteor.beerDay.today() } ,
       food: { $ne: '' }
     });
   },
 
   drinks: function(){
     return Orders.find({
-      date: new Date().toDateString(),
+      createdAt: { $gt: Meteor.beerDay.today() } ,
       drink: { $ne: '' }
     });
   },
 
   all: function(){
-    console.log(Orders.find({}));
-    return Orders.find({});
+    return Orders.find({}, { sort: { createdAt: -1 } });
   }
 });
 

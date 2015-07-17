@@ -7,14 +7,14 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
 
         <!-- Request -->
         {{> request}}
       </div>
 
       <!-- Food -->
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="panel panel-primary order-panel">
           <div class="panel-heading">
             <h3 class="panel-title">Jist ({{ foods.count }})</h3>
@@ -32,7 +32,7 @@
       </div>
 
       <!-- Drinks -->
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="panel panel-danger order-panel">
           <div class="panel-heading">
             <h3 class="panel-title">Pit ({{ drinks.count }})</h3>
@@ -77,7 +77,6 @@
       <input type="text" class="form-control empty" name="food">
       <div class="floating-label">A šta ćeš pojist?</div>
       <div class="hint">Enter da potvrdiš nigga</div>
-
     </div>
     <div class="form-control-wrapper">
       <input type="text" class="form-control empty" name="drink">
