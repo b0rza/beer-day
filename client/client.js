@@ -23,6 +23,20 @@ Template.body.helpers({
 
   all: function(){
     return Orders.find({}, { sort: { createdAt: -1 } });
+  },
+
+  aggregatedOrders: function () {
+    foodOrders = Orders.find({
+      createdAt: { $gte: Meteor.beerDay.today() } ,
+      food: { $ne: '' }
+    });
+
+    drinkOrders = Orders.find({
+      createdAt: { $gte: Meteor.beerDay.today() } ,
+      drink: { $ne: '' }
+    });
+
+    return Meteor.beerDay.aggregateOrders($.extend(foodOrders, drinkOrders));
   }
 });
 

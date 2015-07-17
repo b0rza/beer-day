@@ -51,13 +51,22 @@
 
     </div>
 
+    <!-- Aggregations -->
+    <div class="row">
+      <div class="col-lg-12">
+        {{ #each aggregatedOrders }}
+          {{ >aggregatedOrder  }}
+        {{ /each }}
+      </div>
+    </div>
+
     <!-- Control -->
     <div class="row">
       <div class="col-lg-12">
         <ul>
           {{ #each all }}
             <li>
-              <span class="username-emphasis">{{ username }}</span> | {{ drink }}
+              <span class="username-emphasis">{{ username }}</span> | {{ food }} -> {{ foodDetails }}
             </li>
           {{ /each }}
         </ul>
@@ -65,6 +74,17 @@
     </div>
   </div>
 </body>
+
+<template name="aggregatedOrder">
+  {{ item }}({{ count }})
+  <ul>
+    {{ #each details }}
+      {{ #if this }}
+        <li>{{ this }}</li>
+      {{ /if }}
+    {{ /each }}
+  </ul>
+</template>
 
 <template name="request">
   <form class="requestForm" >
