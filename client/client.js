@@ -1,42 +1,37 @@
-Session.setDefault('userUid', Meteor.beerDay.guid());
+Session.setDefault('showControl', false);
 
-Template.request.helpers({
-  userUid: function(){
-    return Session.get('userUid');
+Template.body.helpers({
+  showControl: function(){
+    return Session.get('showControl');
   }
 });
 
 Template.body.helpers({
   foods: function(){
     return Orders.find({
-      createdAt: { $gt: Meteor.beerDay.today() } ,
+      createdAt: { $gte: Meteor.beerDay.today() },
       food: { $ne: '' }
     });
   },
 
   drinks: function(){
     return Orders.find({
-      createdAt: { $gt: Meteor.beerDay.today() } ,
+      createdAt: { $gte: Meteor.beerDay.today() },
       drink: { $ne: '' }
     });
+  },
+
+  aggregatedOrders: function () {
+    nonEmptyOrders = Orders.find({
+      createdAt: { $gte: Meteor.beerDay.today() },
+      $or: [{ food: { $ne: "" } }, { drink: { $ne: "" } }]
+    });
+
+    return Meteor.beerDay.aggregateOrders(nonEmptyOrders);
   },
 
   all: function(){
     return Orders.find({}, { sort: { createdAt: -1 } });
-  },
-
-  aggregatedOrders: function () {
-    foodOrders = Orders.find({
-      createdAt: { $gte: Meteor.beerDay.today() } ,
-      food: { $ne: '' }
-    });
-
-    drinkOrders = Orders.find({
-      createdAt: { $gte: Meteor.beerDay.today() } ,
-      drink: { $ne: '' }
-    });
-
-    return Meteor.beerDay.aggregateOrders($.extend(foodOrders, drinkOrders));
   }
 });
 
@@ -47,5 +42,9 @@ Template.body.events({
       $('.requestForm').serializeArray().map(function(x){ request[x.name] = x.value; });
       Meteor.call('addOrder', request);
     }
+  },
+
+  "click .togglebutton": function (e) {
+    Session.set('showControl', e.target.checked);
   }
 });

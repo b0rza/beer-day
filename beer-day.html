@@ -24,6 +24,9 @@
               {{ #each foods }}
                 <li>
                   <span class="username-emphasis">{{ username }}</span> | {{ food }}
+                  {{ #if foodDetails }}
+                    | <span class="details-emphasis">{{ foodDetails }}</span>
+                  {{ /if }}
                 </li>
               {{ /each }}
             </ul>
@@ -42,6 +45,9 @@
               {{ #each drinks }}
                 <li>
                   <span class="username-emphasis">{{ username }}</span> | {{ drink }}
+                  {{ #if drinkDetails }}
+                    | <span class="details-emphasis">{{ drinkDetails }}</span>
+                  {{ /if }}
                 </li>
               {{ /each }}
             </ul>
@@ -53,14 +59,28 @@
 
     <!-- Aggregations -->
     <div class="row">
-      <div class="col-lg-12">
-        {{ #each aggregatedOrders }}
-          {{ >aggregatedOrder  }}
-        {{ /each }}
+      <div class="col-lg-8">
+        <div class="panel panel-default aggregatedOrders">
+          <div class="panel-heading">SVE! aaaaaaaaaaa SVE!</div>
+          <div class="panel-body">
+            {{ #each aggregatedOrders }}
+              {{ >aggregatedOrder  }}
+            {{ /each }}
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Control -->
+    <div class="togglebutton">
+      <label>
+        <input type="checkbox" checked="{{ showControl }}"> Toggle control
+        <span class="control toggle"></span>
+      </label>
+    </div>
+
+    {{ #if showControl }}
+    <h2>Control</h2>
     <div class="row">
       <div class="col-lg-12">
         <ul>
@@ -72,44 +92,43 @@
         </ul>
       </div>
     </div>
+    {{ /if }}
+
   </div>
 </body>
 
 <template name="aggregatedOrder">
-  {{ item }}({{ count }})
+  {{ item }} <span class="label label-success">{{ count }}</span>
   <ul>
     {{ #each details }}
       {{ #if this }}
-        <li>{{ this }}</li>
+        <li><i class="mdi-hardware-keyboard-arrow-right"></i>{{ this }}</li>
       {{ /if }}
     {{ /each }}
   </ul>
 </template>
 
 <template name="request">
-  <form class="requestForm" >
-    <div class="form-control-wrapper">
-      <input type="text" class="form-control empty" name="username">
-      <div class="floating-label">A ti si?</div>
-      <div class="hint">Enter da potvrdiš nigga</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">A štaš?</div>
+    <div class="panel-body">
+      <form class="requestForm" >
+        <div class="form-control-wrapper">
+          <input type="text" class="form-control empty" name="username">
+          <div class="floating-label">A ti si?</div>
+          <div class="hint">Enter da potvrdiš nigga</div>
+        </div>
+        <div class="form-control-wrapper">
+          <input type="text" class="form-control empty" name="food">
+          <div class="floating-label">A štaš pojist?</div>
+          <div class="hint">Enter da potvrdiš nigga</div>
+        </div>
+        <div class="form-control-wrapper">
+          <input type="text" class="form-control empty" name="drink">
+          <div class="floating-label">A štaš popit?</div>
+          <div class="hint">Enter da potvrdiš nigga</div>
+        </div>
+      </form>
     </div>
-    <div class="form-control-wrapper">
-      <input type="text" class="form-control empty" name="food">
-      <div class="floating-label">A šta ćeš pojist?</div>
-      <div class="hint">Enter da potvrdiš nigga</div>
-    </div>
-    <div class="form-control-wrapper">
-      <input type="text" class="form-control empty" name="drink">
-      <div class="floating-label">A šta ćeš popit?</div>
-      <div class="hint">Enter da potvrdiš nigga</div>
-    </div>
-  </form>
-</template>
-
-<template name="foodOrder">
-  <span class="username-emphasis">{{ username }}</span> | {{ food }}
-</template>
-
-<template name="drinkOrder">
-  <span class="username-emphasis">{{ username }}</span> | {{ drink }}
+  </div>
 </template>
